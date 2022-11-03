@@ -18,12 +18,14 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="css/style.css">
 
-<title>JS Array Carousel with Objects</title>
+<title>Carousel Vue Slider</title>
 
 </head>
 <body>
 
 <main>
+<div id="app">
+    <h1 class="title">{{movie.title}}</h1>
     <div class="container-fluid p-5">
         <div class="row text-center">
             <div class="col-12 p-3" id="my-before-carousel">
@@ -37,10 +39,6 @@
                         <!-- immagini -->
                         <div class="my-carousel-item active" >
                             <img class="img-fluid" src="http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg" alt="...  picture">
-                            <div class="item-description px-3">
-                                <h2>Svezia</h2>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.</p>
-                            </div>
                         </div>
                         <!-- /immagini -->
                     </div>
@@ -85,13 +83,20 @@
                     </div>
                 </div>
             </div>
+            <div class="details">
+                <h3 class="title">{{movie.title}}</h3>
+                <div>Category: {{movie.category}}</div>
+                <small>Lenght: {{movie.lenght}}</small>
+            </div>
 
             <div class="col-12 p-3" id="my-after-carousel">
             </div>
         </div>
     </div>
+</div>
 </main>
 
- <script type="text/javascript" src="js/main.js"></script> 
+<script src="https://unpkg.com/vue@3"></script>
+<script type="text/javascript" src="js/main.js"></script> 
 </body>
 </html>
