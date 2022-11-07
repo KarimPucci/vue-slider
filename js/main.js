@@ -1,51 +1,48 @@
-const images = [
-    {
-        url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
-        title: 'Svezia',
-        description: 'Svezia: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
-    },
-
-    {
-        url: 'https://static1.evcdn.net/images/reduction/1513757_w-1920_h-1080_q-70_m-crop.jpg',
-        title: 'Perù',
-        description: 'Perù: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
-    },
-
-    {
-        url: 'https://img.itinari.com/pages/images/original/0d3ed180-d22d-48e8-84df-19c4d888b41f-62-crop.jpg?ch=DPR&dpr=2.625&w=1600&s=7ebd4b5a9e045f41b4e0c7c75d298d6c',
-        title: 'Chile',
-        description: 'Chile: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
-    },
-    {
-        url: 'https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg',
-        title: 'Argentina',
-        description: 'Argentina: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
-    },
-    {
-        url: 'https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop',
-        title: 'Colombia',
-        description: 'Colombia: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
-    },
-]
-
 const {createApp} = Vue;
 
 createApp({
-    data(){
-        return{
-            movie:{
-                images:[
-                    'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
-                    'https://static1.evcdn.net/images/reduction/1513757_w-1920_h-1080_q-70_m-crop.jpg',
-                    'https://img.itinari.com/pages/images/original/0d3ed180-d22d-48e8-84df-19c4d888b41f-62-crop.jpg?ch=DPR&dpr=2.625&w=1600&s=7ebd4b5a9e045f41b4e0c7c75d298d6c',
-                    'https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg',
-                    'https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop',
-                ],
-                title: "The Mandalorian",
-                category: "Action",
-                lenght: "120 min"
-            }
-        }
+  data(){
+    return{
+      movie:{
+        images: [
+          'https://www.themoviedb.org/t/p/w500/b3zVRZ9R2QyV0klRESMLKaBwQqm.jpg',
+          'https://www.themoviedb.org/t/p/w500/9VdgIj9R9Z9dfDoO76v57V6FF6y.jpg',
+          'https://www.themoviedb.org/t/p/w500/d4Ja9AMFoWEtTPKFrzQac0ReYb.jpg',
+          'https://www.themoviedb.org/t/p/w500/p6erCET4fvzQiGz0wgwGFvEIdcb.jpg',
+          'https://www.themoviedb.org/t/p/w500/pWBgjkG8ASvYnrql3tbjMo0d8tk.jpg'
+        ],
+        title: 'The Mandalorian',
+        category: 'Action',
+        lenght: '120 min'
+      },
+      activeImage: 0,
     }
-}).mount("#app")
+  },
+  methods:{
+    changeImage(index){
+      // al click della thumb riceco l'indice del ciclo for
+      // activeImage assume quell'indice
+      this.activeImage = index;
+    },
+    nextPrev(isNext){
+
+      // se ho cliccato su next isNext è true e quindi incremento
+      // altrimenti decreomento activeImage
+
+      // if(isNext) this.activeImage++;
+      // else this.activeImage--;
+
+      // soluzione più elegante col ternario
+      isNext ? this.activeImage++ : this.activeImage--;
+
+      // verifico che il contatore non vada sollo lo zero o oltre il numero di elementi
+      if(this.activeImage === this.movie.images.length){
+        this.activeImage = 0;
+      }else if(this.activeImage < 0){
+        this.activeImage = this.movie.images.length - 1; 
+      }
+
+    }
+  }
+}).mount('#app');
 
